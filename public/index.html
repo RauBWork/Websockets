@@ -12,7 +12,7 @@
 </head>
 
 <body class="container">
-    <h1 class="mt-5">Mini Chat</h1>
+    <h1 class="mt-5"> </h1>
     <hr>
     <form id="myForm">
         <div class="row">
@@ -33,39 +33,50 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.2/socket.io.js"
         integrity="sha512-jMNwWSmjje4fjYut9MBGKXw5FZA6D67NHAuC9szpjbbjg51KefquNfvn4DalCbGfkcv/jHsHnPo1o47+8u4biA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <script>
         const socket = io('http://localhost:8080')
-        const myForm = document.querySelector('#myForm');
-        const messages = document.querySelector('#my-messages')
-        const txtMessage = document.querySelector('#txtMessage');
 
-        myForm.addEventListener('submit', (event) => {
-            event.preventDefault();
-            const newMessage = txtMessage.value
-
-            socket.emit('message-to-server', {
-                newMessage
-            })
-
-        })
-        
         socket.on('message-from-server', (data) => {
-            messages.innerHTML += `<li>${data.newMessage}</li>`
+            console.log('data :>> ', data);
         })
 
-        // socket.on('welcome-message', (data) => {
-        //     console.log('Server say something')
-        //     console.log('data :>> ', data);
-        // })
-
-        // setTimeout(() => {
-        //     console.log("Here is some")
-        //     socket.emit('response-message', {
-        //         message: "Client",
-        //         name: "Raul",
-        //     });
-        // }, 2000);
     </script>
+
+    <!-- <script>
+    const socket = io('http://localhost:8080')
+    const myForm = document.querySelector('#myForm');
+    const messages = document.querySelector('#my-messages')
+    const txtMessage = document.querySelector('#txtMessage');
+
+    myForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const newMessage = txtMessage.value
+
+        socket.emit('message-to-server', {
+            newMessage
+        })
+
+    })
+
+    socket.on('message-from-server', (data) => {
+        messages.innerHTML += `<li>${data.newMessage}</li>`
+    })
+
+    // socket.on('welcome-message', (data) => {
+    //     console.log('Server say something')
+    //     console.log('data :>> ', data);
+    // })
+
+    // setTimeout(() => {
+    //     console.log("Here is some")
+    //     socket.emit('response-message', {
+    //         message: "Client",
+    //         name: "Raul",
+    //     });
+    // }, 2000);
+</script> -->
+
 </body>
 
 </html>
